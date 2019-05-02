@@ -1,9 +1,9 @@
 resource "google_container_cluster" "gcpcluster" {
-  project    = "linux-classs"
+  project    = "focus-surfer-237100"
   name       = "gcpcluster"
   network    = "default"
   subnetwork = "default"
-  zone       = "us-central1-a"
+  zone       = "us-east1-b"
 
   # additional_zones = "${var.additional_zones}"
 
@@ -11,10 +11,27 @@ resource "google_container_cluster" "gcpcluster" {
     username = "admin"
     password = "StrongP1~assworafasfweaqg32d"
   }
-  initial_node_count = "2"
-  node_config {
-    # machine_type = ""
-    # oauth_scopes = [  #   "https://www.googleapis.com/auth/compute",  #   "https://www.googleapis.com/auth/devstorage.read_only",  #   "https://www.googleapis.com/auth/logging.write",  #   "https://www.googleapis.com/auth/monitoring",  # ]
+  addons_config {
+    http_load_balancing {
+      disabled = false
+    }
+
+    horizontal_pod_autoscaling {
+      disabled = false
+    }
+
+    kubernetes_dashboard {
+      disabled = true
+    }
+  }
+  node_pool {
+    name       = "default-pool"
+    node_count = 2
+
+    autoscaling {
+      min_node_count = 1
+      max_node_count = 3
+    }
   }
 }
 
