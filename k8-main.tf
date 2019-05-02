@@ -1,5 +1,5 @@
 resource "google_container_cluster" "gcpcluster" {
-  project    = "focus-surfer-237100"
+  project    = "linux-classs"
   name       = "gcpcluster"
   network    = "default"
   subnetwork = "default"
