@@ -8,7 +8,7 @@ resource "google_container_cluster" "gcpcluster" {
 
   master_auth {
     username = "cluster"
-    password = "Cps50364747"
+    password = "Cps50364srym7645747"
   }
   initial_node_count = "2"
   node_config {
